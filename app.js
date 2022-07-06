@@ -5,9 +5,9 @@ const Book = mongoose.model('Book', {
   title: String,
 });
 
-const newBook = new Book({
-  title: 'El mejor libro del mundo',
-  author: 'El mejor autor del libro',
-});
+// const newBook = new Book({
+//   title: 'El mejor libro del mundo',
+//   author: 'El mejor autor del libro',
+// });
 
-newBook.save().then(console.log).catch(console.error);
+// newBook.save().then(console.log).catch(console.error);
