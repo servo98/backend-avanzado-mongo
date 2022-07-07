@@ -75,7 +75,21 @@ const updateAuthorById = async (req, res) => {
   }
 };
 
-const deleteAuhorById = () => {};
+const deleteAuhorById = async (req, res) => {
+  try {
+    await Author.deleteOne({
+      id: req.params.id,
+    });
+    return res.json({
+      msg: 'Autor eliminado',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'Ha ocurrido un error al borrar autor',
+      error,
+    });
+  }
+};
 
 export {
   getAllAuthors,
