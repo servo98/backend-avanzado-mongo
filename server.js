@@ -4,6 +4,7 @@
 import http from 'http';
 
 import api from './api/api.js';
+import database from './config/database.js';
 
 import config from './config/index.js';
 
@@ -23,9 +24,4 @@ server.on('listening', onListening);
 server.on('error', onError);
 
 server.listen(serverCnf.port);
-
-class Book {
-  getAllLibros;
-  getLibroBydID;
-  updateLibroById;
-}
+database();

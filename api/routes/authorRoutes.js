@@ -1,38 +1,20 @@
 import express from 'express';
+import { authorController } from '../controllers/index.js';
 
 const router = express.Router();
 
 router
   .route('/authors')
-  .get((req, res) => {
-    return res.json({
-      msg: 'ESto es la ruta de GET /authors',
-    });
-  })
-  .post((req, res) => {
-    return res.json({
-      msg: 'ESto es la ruta de POST /authors',
-    });
-  });
+  .get(authorController.getAllAuthors)
+  .post(authorController.createAuthor);
 
 router
   .route('/authors/:id')
-  .get((req, res) => {
-    return res.json({
-      msg: 'ESto es la ruta de GET /authors/:id',
-    });
-  })
-  .put((req, res) => {
-    return res.json({
-      msg: 'ESto es la ruta de PUT /authors/:id',
-    });
-  })
-  .delete((req, res) => {
-    return res.json({
-      msg: 'ESto es la ruta de DELETE /authors/:id',
-    });
-  });
+  .get(authorController.getAuthorById)
+  .put(authorController.updateAuthorById)
+  .delete(authorController.deleteAuhorById);
 
+export default router;
 /**
  * /authors         GET
  * /authors         POST
@@ -40,5 +22,3 @@ router
  * /authors/:id    PUT
  * /authors/:id    DELETE
  */
-
-export default router;
