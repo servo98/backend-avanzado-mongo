@@ -1,7 +1,12 @@
 import mongoose from 'mongoose';
 
 const bookSchema = new mongoose.Schema({
-  author: [String],
+  authors: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Author',
+    },
+  ],
   title: String,
   category: String,
   editorial: String,

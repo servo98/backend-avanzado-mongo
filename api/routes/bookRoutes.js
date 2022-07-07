@@ -8,6 +8,8 @@ router
   .get(bookController.getAllBooks)
   .post(bookController.createBook);
 
+router.get('/booksWithAuthors', bookController.booksWithAuthors);
+
 router
   .route('/books/:id')
   .get(bookController.getBookById)

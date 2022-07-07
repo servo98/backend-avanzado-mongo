@@ -49,7 +49,7 @@ const getBookById = async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
     return res.json({
-      msg: 'Autor encontrado',
+      msg: 'Libro encontrado',
       book,
     });
   } catch (error) {
@@ -64,7 +64,7 @@ const updateBookById = async (req, res) => {
   try {
     const book = await Book.findByIdAndUpdate(req.params.id, req.body);
     return res.json({
-      msg: 'Autor actualizado',
+      msg: 'Libro actualizado',
       book,
     });
   } catch (error) {
@@ -81,7 +81,7 @@ const deleteBookById = async (req, res) => {
       id: req.params.id,
     });
     return res.json({
-      msg: 'Autor eliminado',
+      msg: 'Libro eliminado',
     });
   } catch (error) {
     return res.status(500).json({
@@ -91,4 +91,26 @@ const deleteBookById = async (req, res) => {
   }
 };
 
-export { getAllBooks, createBook, getBookById, updateBookById, deleteBookById };
+const booksWithAuthors = async (req, res) => {
+  try {
+    const booksWithAuthors = await Book.find().populate('authors');
+    return res.json({
+      msg: 'Libros con autores encontrados',
+      books: booksWithAuthors,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'Ha ocurrido un error al consultar libros con autores',
+      error,
+    });
+  }
+};
+
+export {
+  getAllBooks,
+  createBook,
+  getBookById,
+  updateBookById,
+  deleteBookById,
+  booksWithAuthors,
+};
