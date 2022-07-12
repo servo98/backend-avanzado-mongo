@@ -3,7 +3,7 @@
  */
 
 import express from 'express';
-import { authorRoutes, bookRoutes } from './routes/index.js';
+import { authorRoutes, bookRoutes, authRoutes } from './routes/index.js';
 
 const api = express();
 
@@ -18,5 +18,6 @@ api.get('/', (_, res) => {
 
 api.use(authorRoutes);
 api.use(bookRoutes);
+api.use(authRoutes);
 
 export default api;

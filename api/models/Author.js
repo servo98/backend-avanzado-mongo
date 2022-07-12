@@ -7,6 +7,4 @@ const authorSchema = new mongoose.Schema({
   lastName: String,
 });
 
-const AuthorModel = mongoose.model('Author', authorSchema);
-
-export default AuthorModel;
+export default mongoose.model('Author', authorSchema);
