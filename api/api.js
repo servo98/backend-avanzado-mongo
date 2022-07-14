@@ -1,9 +1,5 @@
-/**
- * Instancia principal de express
- */
-
 import express from 'express';
-import { authorRoutes, bookRoutes, authRoutes } from './routes/index.js';
+import { authRoutes, itemRoutes, ticketRoutes } from './routes/index.js';
 import { protectedRoute } from './middlewares/index.js';
 
 const api = express();
@@ -20,7 +16,8 @@ api.get('/', (_, res) => {
 
 api.use(protectedRoute);
 
-api.use(authorRoutes);
-api.use(bookRoutes);
+/**Rutas de ticket y de articulo */
+api.use('/tickets', ticketRoutes);
+api.use('/items', itemRoutes);
 
 export default api;

@@ -1,7 +1,7 @@
 import jwt from 'jwt-simple';
 import config from '../../config/index.js';
 import { User } from '../models/index.js';
-const protectedRoute = (req, res, next) => {
+const protectedRoute = async (req, res, next) => {
   /**
    * 1.- Verificar que la petición tenga un token en el header ✅
    *      Si no, regresar un 401 ✅
@@ -19,10 +19,11 @@ const protectedRoute = (req, res, next) => {
   }
   try {
     const payload = jwt.decode(token, config.token.secret);
-    const user = User.findById(payload.userId);
+    const user = await User.findById(payload.userId);
     if (!user) {
       return res.status(401).json('Usuario no existente');
     }
+    req.user = user;
     next();
   } catch (error) {
     return res.status(401).json({

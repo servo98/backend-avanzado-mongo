@@ -1,3 +1,3 @@
-export { default as Author } from './Author.js';
-export { default as Book } from './Book.js';
+export { default as Item } from './Item.js';
+export { default as Ticket } from './Ticket.js';
 export { default as User } from './User.js';

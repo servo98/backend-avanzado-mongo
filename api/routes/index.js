@@ -1,3 +1,3 @@
-export { default as authorRoutes } from './authorRoutes.js';
-export { default as bookRoutes } from './bookRoutes.js';
+export { default as ticketRoutes } from './ticketRoutes.js';
+export { default as itemRoutes } from './itemRoutes.js';
 export { default as authRoutes } from './authRoutes.js';
