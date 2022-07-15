@@ -1,6 +1,3 @@
-/**
- * TODO: server http importando api
- */
 import http from 'http';
 
 import api from './api/api.js';

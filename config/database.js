@@ -24,5 +24,15 @@ db.on('reconnected', () => {
 });
 
 export default () => {
-  mongoose.connect(`${config.database.uri}/${config.database.name}`);
+  console.log(process.env.NODE_ENV);
+  let databaseUri;
+  let databaseName;
+  if (process.env.NODE_ENV === 'test') {
+    databaseUri = config.databaseTest.uri;
+    databaseName = config.databaseTest.name;
+  } else {
+    databaseUri = config.database.uri;
+    databaseName = config.database.name;
+  }
+  mongoose.connect(`${databaseUri}/${databaseName}`);
 };

@@ -36,9 +36,12 @@ const create = async (req, res) => {
     const newItem = await Item.create(req.body);
     return res.json({
       msg: 'Item creado',
-      items: newItem,
+      item: newItem,
     });
   } catch (error) {
+    if (process.env.NODE_ENV === 'test') {
+      console.error(error);
+    }
     return returnError('Error al crer items', res);
   }
 };

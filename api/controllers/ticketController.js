@@ -8,7 +8,9 @@ const returnError = (msg, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const tickets = await Ticket.find();
+    const tickets = await Ticket.find({
+      user: req.user.id,
+    });
     return res.json({
       msg: 'Tickets obtenidos',
       tickets,
@@ -49,7 +51,7 @@ const create = async (req, res) => {
 const updateById = async (req, res) => {
   try {
     const { id } = req.params;
-    const ticket = Ticket.findByIdAndUpdate(id, req.body);
+    const ticket = await Ticket.findByIdAndUpdate(id, req.body);
     return res.json({
       msg: 'Ticket actualizado',
       ticket,
@@ -83,7 +85,7 @@ const calculate = async (req, res) => {
       newSubtotal += item.price;
     });
     newIva = newSubtotal * 0.16;
-    newTotal = newSubtotal * newSubtotal;
+    newTotal = newSubtotal + newSubtotal;
     const ticketUpdated = await Ticket.updateOne(
       {
         id,
