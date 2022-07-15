@@ -1,9 +1,14 @@
 import supertest from 'supertest';
 import api from '../api.js';
-import database from '../../config/database.js';
+import database, { connection } from '../../config/database.js';
 
 const agent = supertest.agent(api);
-database();
+
+await database();
+
+afterEach(async () => {
+  await connection.db.dropDatabase();
+});
 
 test('Create Ticket', async () => {
   await agent.post('/auth/register').send({
@@ -82,8 +87,4 @@ test('Update Ticket', async () => {
   expect(response.statusCode).toBe(200);
 });
 
-// test('Get all Tickets', () => {});
-
-// test('Get ticket by id', () => {});
-
-// test('Delete ticket', () => {});
+//TODO: crear test de get ticket by id & test de delete ticket by id

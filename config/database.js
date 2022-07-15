@@ -22,9 +22,9 @@ db.on('disconnected', () => {
 db.on('reconnected', () => {
   console.log('Se ha reconectado la base 🤗');
 });
+export { db as connection };
 
-export default () => {
-  console.log(process.env.NODE_ENV);
+export default async () => {
   let databaseUri;
   let databaseName;
   if (process.env.NODE_ENV === 'test') {
@@ -34,5 +34,5 @@ export default () => {
     databaseUri = config.database.uri;
     databaseName = config.database.name;
   }
-  mongoose.connect(`${databaseUri}/${databaseName}`);
+  await mongoose.connect(`${databaseUri}/${databaseName}`);
 };

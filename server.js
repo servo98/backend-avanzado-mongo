@@ -21,4 +21,4 @@ server.on('listening', onListening);
 server.on('error', onError);
 
 server.listen(serverCnf.port);
-database();
+await database();
